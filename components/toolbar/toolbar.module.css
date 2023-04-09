@@ -1,0 +1,22 @@
+.navbar {
+    position: fixed;
+    display: flex;
+    width: 100%;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    background-color: rgb(255, 255, 255);
+}
+
+.navbarItem {
+    padding: 1rem;
+    color: rgb(35, 35, 35);
+    cursor: pointer;
+    font-size: 2rem;
+    line-height: 1.3;
+    font-weight: 600;
+}
+
+.navbarItem:hover {
+    color: rgba(169, 169, 169, 0.536);
+}
