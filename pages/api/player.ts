@@ -56,7 +56,7 @@ export default async function handler(
       } else {
         res.status(200).json({
           message: "Post Success",
-          response: error,
+          response: null,
         });
       }
       break;
@@ -85,7 +85,7 @@ export default async function handler(
         } else {
           res.status(200).json({
             message: "Put Success",
-            response: error,
+            response: null,
           });
         }
         break;
@@ -107,7 +107,7 @@ export default async function handler(
         } else {
           res.status(200).json({
             message: "Delete Success",
-            response: error,
+            response: null,
           });
         }
         break;
