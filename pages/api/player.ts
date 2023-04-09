@@ -1,6 +1,15 @@
 import { supabase } from "../../lib/supabaseClient";
+import type { NextApiRequest, NextApiResponse } from "next";
 
-export default async function handler(req: any, res: any) {
+type Data = {
+  message: string;
+  response: any;
+};
+
+export default async function handler(
+  req: NextApiRequest,
+  res: NextApiResponse<Data>
+) {
   switch (req.method) {
     case "GET":
       try {
@@ -15,7 +24,10 @@ export default async function handler(req: any, res: any) {
         });
         break;
       } catch (error) {
-        res.status(400).json({ success: false });
+        res.status(500).json({
+          message: "Error getting player",
+          response: error,
+        });
       }
     case "POST":
       const name = req.body.name;
@@ -39,10 +51,12 @@ export default async function handler(req: any, res: any) {
       if (error) {
         res.status(500).json({
           message: "Error creating player",
+          response: error,
         });
       } else {
         res.status(200).json({
           message: "Post Success",
+          response: error,
         });
       }
       break;
@@ -66,17 +80,19 @@ export default async function handler(req: any, res: any) {
         if (error) {
           res.status(500).json({
             message: "Error updating player",
+            response: error,
           });
         } else {
           res.status(200).json({
             message: "Put Success",
+            response: error,
           });
         }
         break;
       } catch (error) {
         res.status(500).json({
           message: "Error updating player",
-          error: error,
+          response: error,
         });
       }
     case "DELETE":
@@ -86,17 +102,19 @@ export default async function handler(req: any, res: any) {
         if (error) {
           res.status(500).json({
             message: "Error deleting player",
+            response: error,
           });
         } else {
           res.status(200).json({
             message: "Delete Success",
+            response: error,
           });
         }
         break;
       } catch (error) {
         res.status(500).json({
           message: "Error deleting player",
-          error: error,
+          response: error,
         });
       }
   }
