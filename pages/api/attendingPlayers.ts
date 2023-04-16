@@ -9,7 +9,10 @@ type Data = {
 export default async function handler(req: NextApiRequest, res: NextApiResponse<Data>) {
   switch (req.method) {
     case "GET":
-      let response = await supabase.from("players").select();
+      let response = await supabase
+        .from("players")
+        .select()
+        .eq("attending", true);
       res.status(200).json({
         message: "Get Success",
         response: response,

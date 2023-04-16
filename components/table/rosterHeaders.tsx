@@ -7,10 +7,15 @@ export default function RosterHeaders({
   pushTableHeaders,
   players,
   pushSortedPlayers,
-}: any) {
+}: {
+  tableHeaders: Header[];
+  pushTableHeaders: any;
+  players: Player[];
+  pushSortedPlayers: any;
+}) {
   //   const [tableHeaders, setTableHeaders] = useState(initialTableHeaders);
 
-  function sortPlayers(header: any) {
+  function sortPlayers(header: Header) {
     const updatedPlayersData = [...players];
     sortData(
       updatedPlayersData,
@@ -23,7 +28,7 @@ export default function RosterHeaders({
 
   function handleSortChange(index: any) {
     if (tableHeaders[index].sortable) {
-      const updatedTableHeaders = tableHeaders.map((header: any, i: any) => {
+      const updatedTableHeaders = tableHeaders.map((header: Header, i: any) => {
         if (index === i) {
           header.sortActive = true;
           header.sortAsc = !header.sortAsc;
@@ -39,7 +44,7 @@ export default function RosterHeaders({
     }
   }
 
-  function getHeaderClassName(header: any) {
+  function getHeaderClassName(header: Header) {
     if (header.title === "Name") {
       return utilStyles.myTableCellLg;
     } else if (header.title === "Attending") {
@@ -52,7 +57,7 @@ export default function RosterHeaders({
   return (
     <>
       <div className={utilStyles.myTableRow}>
-        {tableHeaders.map((tableHeader: any, index: any) => (
+        {tableHeaders.map((tableHeader: Header, index: any) => (
           <div
             className={`${getHeaderClassName(tableHeader)} ${
               utilStyles.myTableHeader

@@ -1,4 +1,4 @@
-export default function calculateOverall(player: any) {
+export default function calculateOverall(player: Player) {
   return Math.round(
     (player.offense +
       player.defense +

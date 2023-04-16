@@ -4,16 +4,34 @@ import Link from "next/link";
 import { useState } from "react";
 import { useRouter } from "next/router";
 
-export default function PlayerDetails({ player, isNew, apiBaseUrl }: any) {
+export default function PlayerDetails({
+  player,
+  isNew,
+  apiBaseUrl,
+}: {
+  player: Player;
+  isNew: boolean;
+  apiBaseUrl: string;
+}) {
   const router = useRouter();
 
-  let [currName, setName] = useState(isNew ? "" : player.name);
-  let [currOffense, setOffense] = useState(isNew ? null : player.offense);
-  let [currDefense, setDefense] = useState(isNew ? null : player.defense);
-  let [currSkating, setSkating] = useState(isNew ? null : player.skating);
-  let [currPassing, setPassing] = useState(isNew ? null : player.passing);
-  let [currShot, setShot] = useState(isNew ? null : player.shot);
-  let [currStick, setStick] = useState(isNew ? null : player.stick);
+  let [currName, setName] = useState<string>(isNew ? "" : player.name);
+  let [currOffense, setOffense] = useState<number | null>(
+    isNew ? null : player.offense
+  );
+  let [currDefense, setDefense] = useState<number | null>(
+    isNew ? null : player.defense
+  );
+  let [currSkating, setSkating] = useState<number | null>(
+    isNew ? null : player.skating
+  );
+  let [currPassing, setPassing] = useState<number | null>(
+    isNew ? null : player.passing
+  );
+  let [currShot, setShot] = useState<number | null>(isNew ? null : player.shot);
+  let [currStick, setStick] = useState<number | null>(
+    isNew ? null : player.stick
+  );
 
   async function savePlayer() {
     const newPlayer = {
@@ -28,7 +46,7 @@ export default function PlayerDetails({ player, isNew, apiBaseUrl }: any) {
     };
     const reqUrl = isNew
       ? `${apiBaseUrl}player`
-      : `${apiBaseUrl}player?id=${player._id}`;
+      : `${apiBaseUrl}player?id=${player.id}`;
     await fetch(reqUrl, {
       method: isNew ? "POST" : "PUT",
       headers: {
@@ -40,7 +58,7 @@ export default function PlayerDetails({ player, isNew, apiBaseUrl }: any) {
   }
 
   async function deletePlayer() {
-    const reqUrl = `${apiBaseUrl}player?id=${player._id}`;
+    const reqUrl = `${apiBaseUrl}player?id=${player.id}`;
     await fetch(reqUrl, {
       method: "DELETE",
       headers: {
@@ -69,11 +87,11 @@ export default function PlayerDetails({ player, isNew, apiBaseUrl }: any) {
           <input
             className={`${utilStyles.myInput} ${utilStyles.myNumberInput}`}
             name="offense"
-            defaultValue={currOffense}
+            defaultValue={currOffense?.toString()}
             type="number"
             min="0"
             max="100"
-            onChange={(e) => setOffense(e.target.value)}
+            onChange={(e) => setOffense(+e.target.value)}
           />
         </div>
         <div className={utilStyles.myFormRow}>
@@ -81,11 +99,11 @@ export default function PlayerDetails({ player, isNew, apiBaseUrl }: any) {
           <input
             className={`${utilStyles.myInput} ${utilStyles.myNumberInput}`}
             name="defense"
-            defaultValue={currDefense}
+            defaultValue={currDefense?.toString()}
             type="number"
             min="0"
             max="100"
-            onChange={(e) => setDefense(e.target.value)}
+            onChange={(e) => setDefense(+e.target.value)}
           />
         </div>
         <div className={utilStyles.myFormRow}>
@@ -93,11 +111,11 @@ export default function PlayerDetails({ player, isNew, apiBaseUrl }: any) {
           <input
             className={`${utilStyles.myInput} ${utilStyles.myNumberInput}`}
             name="skating"
-            defaultValue={currSkating}
+            defaultValue={currSkating?.toString()}
             type="number"
             min="0"
             max="100"
-            onChange={(e) => setSkating(e.target.value)}
+            onChange={(e) => setSkating(+e.target.value)}
           />
         </div>
         <div className={utilStyles.myFormRow}>
@@ -105,11 +123,11 @@ export default function PlayerDetails({ player, isNew, apiBaseUrl }: any) {
           <input
             className={`${utilStyles.myInput} ${utilStyles.myNumberInput}`}
             name="passing"
-            defaultValue={currPassing}
+            defaultValue={currPassing?.toString()}
             type="number"
             min="0"
             max="100"
-            onChange={(e) => setPassing(e.target.value)}
+            onChange={(e) => setPassing(+e.target.value)}
           />
         </div>
         <div className={utilStyles.myFormRow}>
@@ -117,11 +135,11 @@ export default function PlayerDetails({ player, isNew, apiBaseUrl }: any) {
           <input
             className={`${utilStyles.myInput} ${utilStyles.myNumberInput}`}
             name="shot"
-            defaultValue={currShot}
+            defaultValue={currShot?.toString()}
             type="number"
             min="0"
             max="100"
-            onChange={(e) => setShot(e.target.value)}
+            onChange={(e) => setShot(+e.target.value)}
           />
         </div>
         <div className={utilStyles.myFormRow}>
@@ -129,11 +147,11 @@ export default function PlayerDetails({ player, isNew, apiBaseUrl }: any) {
           <input
             className={`${utilStyles.myInput} ${utilStyles.myNumberInput}`}
             name="stick"
-            defaultValue={currStick}
+            defaultValue={currStick?.toString()}
             type="number"
             min="0"
             max="100"
-            onChange={(e) => setStick(e.target.value)}
+            onChange={(e) => setStick(+e.target.value)}
           />
         </div>
         <div

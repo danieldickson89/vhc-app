@@ -12,14 +12,20 @@ export default function RosterTable({
   players,
   pushPlayers,
   apiBaseUrl,
-}: any) {
+}: {
+  tableHeaders: Header[];
+  pushTableHeaders: any;
+  players: Player[];
+  pushPlayers: any;
+  apiBaseUrl: string;
+}) {
   const router = useRouter();
 
-  const pullSortedPlayers = (playersSorted: any) => {
+  const pullSortedPlayers = (playersSorted: Player[]) => {
     pushPlayers(playersSorted);
   };
 
-  const pullTableHeaders = (updatedTableHeaders: any) => {
+  const pullTableHeaders = (updatedTableHeaders: Header[]) => {
     pushTableHeaders(updatedTableHeaders);
   };
 
@@ -42,9 +48,9 @@ export default function RosterTable({
     );
   }
 
-  function setAttendance(index: Number) {
-    const nextPlayers = players.map((player: any, i: any) => {
-      if (i === index) {
+  function setAttendance(id: string) {
+    const nextPlayers = players.map((player: Player) => {
+      if (player.id === id) {
         togglePlayerAttendance(player);
         player.attending = !player.attending;
         return player;
@@ -55,7 +61,7 @@ export default function RosterTable({
     pushPlayers(nextPlayers);
   }
 
-  async function togglePlayerAttendance(updatedPlayer: any) {
+  async function togglePlayerAttendance(updatedPlayer: Player) {
     const toggledPlayer = {
       name: updatedPlayer.name,
       offense: updatedPlayer.offense,
@@ -66,7 +72,7 @@ export default function RosterTable({
       stick: updatedPlayer.stick,
       attending: !updatedPlayer.attending,
     };
-    const reqUrl = `${apiBaseUrl}player?id=${updatedPlayer._id}`;
+    const reqUrl = `${apiBaseUrl}player?id=${updatedPlayer.id}`;
     await fetch(reqUrl, {
       method: "PUT",
       headers: {
@@ -86,51 +92,50 @@ export default function RosterTable({
           tableHeaders={tableHeaders}
         ></RosterHeaders>
 
-        {players.map(
-          (
-            {
-              _id,
-              name,
-              offense,
-              defense,
-              skating,
-              passing,
-              shot,
-              stick,
-              attending,
-            }: any,
-            index: any
-          ) => (
-            <div
-              className={`${utilStyles.myTableRow} ${utilStyles.myTableDataRow}`}
-              key={name}
-            >
+        {Array.isArray(players)
+          ? players.map((player: Player) => (
               <div
-                className={utilStyles.myTableCellMd}
-                onClick={() => setAttendance(index)}
+                className={`${utilStyles.myTableRow} ${utilStyles.myTableDataRow}`}
+                key={player.id}
               >
-                {isAttending(attending)}
-              </div>
-              <div className={utilStyles.myTableCellLg}>
-                <Link
-                  href={`/players/${_id}`}
-                  className={utilStyles.playerName}
+                <div
+                  className={utilStyles.myTableCellMd}
+                  onClick={() => setAttendance(player.id)}
                 >
-                  {name}
-                </Link>
+                  {isAttending(player.attending)}
+                </div>
+                <div className={utilStyles.myTableCellLg}>
+                  <Link
+                    href={`/players/${player.id}`}
+                    className={utilStyles.playerName}
+                  >
+                    {player.name}
+                  </Link>
+                </div>
+                <div className={utilStyles.myTableCellSm}>
+                  {calculateOverall(player)}
+                </div>
+                <div className={`${utilStyles.myTableCellSm}`}>
+                  {player.offense}
+                </div>
+                <div className={`${utilStyles.myTableCellSm}`}>
+                  {player.defense}
+                </div>
+                <div className={`${utilStyles.myTableCellSm}`}>
+                  {player.skating}
+                </div>
+                <div className={`${utilStyles.myTableCellSm}`}>
+                  {player.passing}
+                </div>
+                <div className={`${utilStyles.myTableCellSm}`}>
+                  {player.shot}
+                </div>
+                <div className={`${utilStyles.myTableCellSm}`}>
+                  {player.stick}
+                </div>
               </div>
-              <div className={utilStyles.myTableCellSm}>
-                {calculateOverall(players[index])}
-              </div>
-              <div className={`${utilStyles.myTableCellSm}`}>{offense}</div>
-              <div className={`${utilStyles.myTableCellSm}`}>{defense}</div>
-              <div className={`${utilStyles.myTableCellSm}`}>{skating}</div>
-              <div className={`${utilStyles.myTableCellSm}`}>{passing}</div>
-              <div className={`${utilStyles.myTableCellSm}`}>{shot}</div>
-              <div className={`${utilStyles.myTableCellSm}`}>{stick}</div>
-            </div>
-          )
-        )}
+            ))
+          : null}
       </div>
     </>
   );
