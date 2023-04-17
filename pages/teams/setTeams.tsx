@@ -11,7 +11,8 @@ export async function getServerSideProps() {
       "Content-Type": "application/json",
     },
   });
-  let players = await res.json();
+  const apiRes = await res.json();
+  const players = apiRes.response.data;
   return {
     props: { players, apiBaseUrl },
   };
@@ -134,7 +135,7 @@ export default function SetTeams({
 
   function findNextPlayer(team: Player[], averages: number[]) {
     let sumDiff: number | null;
-    let nextPlayer: Player = team[0]
+    let nextPlayer: Player = team[0];
     let potentialTeamAvgs;
     noTeamPlayers.map((player: Player) => {
       potentialTeamAvgs = findAverages([...team, player]);
@@ -179,7 +180,7 @@ export default function SetTeams({
 
       <div className={utilStyles.container}>
         <Toolbar></Toolbar>
-        <div className={utilStyles.navbarSpacer}></div>
+        <div className={utilStyles.setTeamsSpacer}></div>
         <div className={utilStyles.myFormRow}>
           <button onClick={() => resetTeams()}>Reset</button>
           <button onClick={() => autoFillNextPlayer()}>Autofill Player</button>
