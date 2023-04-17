@@ -7,7 +7,13 @@ import {
   faArrowDown91,
 } from "@fortawesome/free-solid-svg-icons";
 
-export default function SortIcon({ tableHeaders, index }: any) {
+export default function SortIcon({
+  tableHeaders,
+  index,
+}: {
+  tableHeaders: Header[];
+  index: any;
+}) {
   for (let i = 0; i < tableHeaders.length; i++) {
     if (tableHeaders[index].sortActive) {
       if (tableHeaders[index].type === "abc" && tableHeaders[index].sortAsc) {

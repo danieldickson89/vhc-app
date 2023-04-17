@@ -1,6 +1,12 @@
 import sortData from "../../services/sortData";
 import utilStyles from "../../styles/utils.module.css";
-import SortIcon from "./sortIcon";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import {
+  faArrowUpAZ,
+  faArrowDownZA,
+  faArrowUp19,
+  faArrowDown91,
+} from "@fortawesome/free-solid-svg-icons";
 
 export default function RosterHeaders({
   tableHeaders,
@@ -13,7 +19,7 @@ export default function RosterHeaders({
   players: Player[];
   pushSortedPlayers: any;
 }) {
-  //   const [tableHeaders, setTableHeaders] = useState(initialTableHeaders);
+  // const [tableHeaders, setTableHeaders] = useState(initialTableHeaders);
 
   function sortPlayers(header: Header) {
     const updatedPlayersData = [...players];
@@ -65,7 +71,31 @@ export default function RosterHeaders({
             key={tableHeader.title}
             onClick={() => handleSortChange(index)}
           >
+            {/* Need to try and figure out how to import the sortIcon component later so I can clean this up */}
             {/* <SortIcon tableHeaders={tableHeaders} index={index} /> */}
+            {tableHeader.sortActive ? (
+              tableHeader.type === "abc" && tableHeader.sortAsc ? (
+                <FontAwesomeIcon
+                  className={utilStyles.fontAwesomeIcon}
+                  icon={faArrowUpAZ}
+                />
+              ) : tableHeader.type === "abc" && !tableHeader.sortAsc ? (
+                <FontAwesomeIcon
+                  className={utilStyles.fontAwesomeIcon}
+                  icon={faArrowDownZA}
+                />
+              ) : tableHeader.type === "123" && tableHeader.sortAsc ? (
+                <FontAwesomeIcon
+                  className={utilStyles.fontAwesomeIcon}
+                  icon={faArrowUp19}
+                />
+              ) : tableHeader.type === "123" && !tableHeader.sortAsc ? (
+                <FontAwesomeIcon
+                  className={utilStyles.fontAwesomeIcon}
+                  icon={faArrowDown91}
+                />
+              ) : null
+            ) : null}
             {tableHeader.title}
           </div>
         ))}

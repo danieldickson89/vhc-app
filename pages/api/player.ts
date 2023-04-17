@@ -17,7 +17,9 @@ export default async function handler(
         const { data, error } = await supabase
           .from("players")
           .select()
-          .eq("id", id);
+          .eq("id", id)
+          .limit(1)
+          .single();
         res.status(200).json({
           message: "Get Success",
           response: { data, error },

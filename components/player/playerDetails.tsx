@@ -34,7 +34,7 @@ export default function PlayerDetails({
   );
 
   async function savePlayer() {
-    const newPlayer = {
+    const currPlayer = {
       name: currName,
       offense: currOffense,
       defense: currDefense,
@@ -52,7 +52,7 @@ export default function PlayerDetails({
       headers: {
         "Content-Type": "application/json",
       },
-      body: JSON.stringify(newPlayer),
+      body: JSON.stringify(currPlayer),
     });
     router.push("/players/roster");
   }

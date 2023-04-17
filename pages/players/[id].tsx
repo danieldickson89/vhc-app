@@ -9,8 +9,8 @@ export async function getServerSideProps(context: any) {
       "Content-Type": "application/json",
     },
   });
-  let data = await res.json();
-  let player = data.response;
+  let apiRes = await res.json();
+  let player = apiRes.response.data;
   const apiBaseUrl = process.env.API_BASE_URL;
   return {
     props: { player, apiBaseUrl },

@@ -1,283 +1,286 @@
 .container {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-  }
-  
-  .heading2Xl {
-    font-size: 2.5rem;
-    line-height: 1.2;
-    font-weight: 800;
-    letter-spacing: -0.05rem;
-    margin: 1rem 0;
-  }
-  
-  .headingXl {
-    font-size: 2rem;
-    line-height: 1.3;
-    font-weight: 800;
-    letter-spacing: -0.05rem;
-    margin: 1rem 0;
-  }
-  
-  .headingLg {
-    font-size: 1.5rem;
-    line-height: 1.4;
-    margin: 1rem 0;
-  }
-  
-  .headingMd {
-    font-size: 1.2rem;
-    line-height: 1.5;
-  }
-  
-  .borderCircle {
-    border-radius: 9999px;
-  }
-  
-  .colorInherit {
-    color: inherit;
-  }
-  
-  .padding1px {
-    padding-top: 1px;
-  }
-  
-  .list {
-    list-style: none;
-    padding: 0;
-    margin: 0;
-  }
-  
-  .listItem {
-    margin: 0 0 1.25rem;
-  }
-  
-  .lightText {
-    color: #666;
-  }
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
 
-  .navbarSpacer {
-    margin-top: 6rem;
-  }
+.heading2Xl {
+  font-size: 2.5rem;
+  line-height: 1.2;
+  font-weight: 800;
+  letter-spacing: -0.05rem;
+  margin: 1rem 0;
+}
 
-  .myTable {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    border: 2px solid rgba(228, 228, 228, 0.659);
-    border-radius: 6px;
-    padding: 2rem;
-  }
+.headingXl {
+  font-size: 2rem;
+  line-height: 1.3;
+  font-weight: 800;
+  letter-spacing: -0.05rem;
+  margin: 1rem 0;
+}
 
-  .myTableRow {
-    display: flex;
-    flex-direction: row;
-  }
+.headingLg {
+  font-size: 1.5rem;
+  line-height: 1.4;
+  margin: 1rem 0;
+}
 
-  .myTableHeader {
-    font-weight: bold;
-    font-size: large;
-    margin-bottom: 1rem;
-    cursor: pointer;
-  }
+.headingMd {
+  font-size: 1.2rem;
+  line-height: 1.5;
+}
 
-  .myTableHeader:hover {
-    color: rgba(169, 169, 169, 0.536);
-  }
+.borderCircle {
+  border-radius: 9999px;
+}
 
-  .myTableHeader:hover:nth-child(10), .myTableHeader:hover:nth-child(11)  {
-    color: black;
-    cursor:auto;
-  }
+.colorInherit {
+  color: inherit;
+}
 
-  .myTableHeader:first-child, .myTableHeader:nth-child(2) {
-    text-align: left;
-  }
+.padding1px {
+  padding-top: 1px;
+}
 
-  .myTableDataRow {
-    padding: .5rem 0;
-    border-bottom: 1px solid rgba(227, 227, 227, 0.37);
-  }
+.list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
 
-  .myTableDataRow:last-of-type {
-    border: none;
-  }
-  
-  .myTableCellSm {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    width: 6rem;
-  }
+.listItem {
+  margin: 0 0 1.25rem;
+}
 
-  .myTableCellMd {
-    display: flex;
-    justify-content: flex-start;
-    align-items: center;
-    width: 8rem;
-  }
+.lightText {
+  color: #666;
+}
 
-  .myTableCellLg {
-    display: flex;
-    justify-content: flex-start;
-    align-items: center;
-    width: 10rem;
-  }
+.navbarSpacer {
+  margin-top: 4rem;
+}
 
-  .myTableCell:first-child, .myTableCell:nth-child(2) {
-    justify-content: start;
-  }
+.myTable {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  border: 2px solid rgba(228, 228, 228, 0.659);
+  border-radius: 6px;
+  padding: 2rem;
+}
 
-  .fontAwesomeIcon {
-    margin-right: .5rem;
-  }
+.myTableRow {
+  display: flex;
+  flex-direction: row;
+}
 
-  .fontAwesomeIconEdit {
-    cursor: pointer;
-    font-size: x-large;
-    color:rgb(64, 116, 246);
-    display: flex;
-    text-align: center;
-  }
+.myTableHeader {
+  font-weight: bold;
+  font-size: large;
+  margin-bottom: 1rem;
+  cursor: pointer;
+}
 
-  .fontAwesomeIconEdit:hover {
-    color:rgba(64, 116, 246, 0.555);
-  }
+.myTableHeader:hover {
+  color: rgba(169, 169, 169, 0.536);
+}
 
-  .fontAwesomeIconDelete {
-    cursor: pointer;
-    font-size: x-large;
-    color:rgb(242, 80, 80);
-  }
+.myTableHeader:hover:nth-child(10),
+.myTableHeader:hover:nth-child(11) {
+  color: black;
+  cursor: auto;
+}
 
-  .fontAwesomeIconDelete:hover {
-    color:rgba(242, 80, 80, 0.555);
-  }
+.myTableHeader:first-child,
+.myTableHeader:nth-child(2) {
+  text-align: left;
+}
 
-  .myForm {
-    display: flex;
-    flex-direction: column;
-    align-items: left;
-    padding: 2rem;
-  }
+.myTableDataRow {
+  padding: 0.5rem 0;
+  border-bottom: 1px solid rgba(227, 227, 227, 0.37);
+}
 
-  .myFormRow {
-    display: flex;
-    flex-direction: row;
-    margin-top: .5rem;
-  }
+.myTableDataRow:last-of-type {
+  border: none;
+}
 
-  .myFormRowCentered {
-    justify-content: center;
-  }
+.myTableCellSm {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 6rem;
+}
 
-  .myLabel {
-    font-size: large;
-    margin-top: .5rem;
-    width: 8rem;
-  }
+.myTableCellMd {
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  width: 8rem;
+}
 
-  .myInput {
-    border: 1.5px solid rgba(228, 228, 228, 0.659);
-    border-radius: 6px;
-    font-size: large;
-    padding: .5rem;
-  }
+.myTableCellLg {
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  width: 10rem;
+}
 
-  .myTextInput {
-    width: 12rem;
-  }
+.myTableCell:first-child,
+.myTableCell:nth-child(2) {
+  justify-content: start;
+}
 
-  .myNumberInput {
-    width: 5rem;
-  }
+.fontAwesomeIcon {
+  margin-right: 0.5rem;
+}
 
-  .myFormButtons {
-    justify-content: center;
-  }
+.fontAwesomeIconEdit {
+  cursor: pointer;
+  font-size: x-large;
+  color: rgb(64, 116, 246);
+  display: flex;
+  text-align: center;
+}
 
-  .myFormButton {
-    border: 1.5px solid rgb(255, 255, 255);
-    border-radius: 6px;
-    font-size: large;
-    font-weight: 200;
-    cursor: pointer;
-    margin: 1rem .25rem;
-  }
+.fontAwesomeIconEdit:hover {
+  color: rgba(64, 116, 246, 0.555);
+}
 
-  .attendingButton {
-    width: 4rem;
-    border: 1.5px solid rgb(255, 255, 255);
-    border-radius: 6px;
-    font-size: large;
-    font-weight: 200;
-    cursor: pointer;
-    margin-left: .25rem;
-  }
+.fontAwesomeIconDelete {
+  cursor: pointer;
+  font-size: x-large;
+  color: rgb(242, 80, 80);
+}
 
-  .myFormButtonCancel {
-    background-color: rgba(234, 234, 234, 0.877);
-  }
+.fontAwesomeIconDelete:hover {
+  color: rgba(242, 80, 80, 0.555);
+}
 
-  .myFormButtonCancel:hover {
-    background-color: rgba(234, 234, 234, 0.555);
-  }
+.myForm {
+  display: flex;
+  flex-direction: column;
+  align-items: left;
+  padding: 2rem;
+}
 
-  .myFormButtonSave {
-    color: white;
-    background-color: rgb(115, 210, 115);
-  }
+.myFormRow {
+  display: flex;
+  flex-direction: row;
+  margin-top: 0.5rem;
+}
 
-  .myFormButtonSave:hover {
-    background-color: rgba(115, 210, 115, 0.555);
-  }
+.myFormRowCentered {
+  justify-content: center;
+}
 
-  .myFormButtonNew {
-    color: white;
-    background-color: rgb(64, 116, 246);
-  }
+.myLabel {
+  font-size: large;
+  margin-top: 0.5rem;
+  width: 8rem;
+}
 
-  .myFormButtonNew:hover {
-    background-color: rgba(64, 116, 246, 0.555);
-  }
+.myInput {
+  border: 1.5px solid rgba(228, 228, 228, 0.659);
+  border-radius: 6px;
+  font-size: large;
+  padding: 0.5rem;
+}
 
-  .myFormButtonRed {
-    color: white;
-    background-color: rgb(242, 80, 80);
-  }
+.myTextInput {
+  width: 12rem;
+}
 
-  .myFormButtonRed:hover {
-    background-color: rgba(242, 80, 80, 0.555);
-  }
+.myNumberInput {
+  width: 5rem;
+}
 
-  .myColumn {
-    display: flex;
-    flex-direction: column;
-  }
+.myFormButtons {
+  justify-content: center;
+}
 
-  .myRow {
-    display: flex;
-    flex-direction: row;
-    margin-top: .5rem;
-  }
+.myFormButton {
+  border: 1.5px solid rgb(255, 255, 255);
+  border-radius: 6px;
+  font-size: large;
+  font-weight: 200;
+  cursor: pointer;
+  margin: 1rem 0.25rem;
+}
 
-  .oneThirdColumn {
-    width: 33%;
-    min-width: 25rem;
-  }
+.attendingButton {
+  width: 4rem;
+  border: 1.5px solid rgb(255, 255, 255);
+  border-radius: 6px;
+  font-size: large;
+  font-weight: 200;
+  cursor: pointer;
+  margin-left: 0.25rem;
+}
 
-  .playerName:hover {
-    color:rgb(80, 115, 255);
-    font-size: larger;
-    font-weight: 500;
-  }
+.myFormButtonCancel {
+  background-color: rgba(234, 234, 234, 0.877);
+}
 
-  .testItem {
-    cursor: move;
-    width: 200px;
-    background-color: lightblue;
-    margin: .5rem;
-    text-align: left;
-    font-size: 30px;
-  }
+.myFormButtonCancel:hover {
+  background-color: rgba(234, 234, 234, 0.555);
+}
+
+.myFormButtonSave {
+  color: white;
+  background-color: rgb(115, 210, 115);
+}
+
+.myFormButtonSave:hover {
+  background-color: rgba(115, 210, 115, 0.555);
+}
+
+.myFormButtonNew {
+  color: white;
+  background-color: rgb(64, 116, 246);
+}
+
+.myFormButtonNew:hover {
+  background-color: rgba(64, 116, 246, 0.555);
+}
+
+.myFormButtonRed {
+  color: white;
+  background-color: rgb(242, 80, 80);
+}
+
+.myFormButtonRed:hover {
+  background-color: rgba(242, 80, 80, 0.555);
+}
+
+.myColumn {
+  display: flex;
+  flex-direction: column;
+}
+
+.myRow {
+  display: flex;
+  flex-direction: row;
+  margin-top: 0.5rem;
+}
+
+.oneThirdColumn {
+  width: 33%;
+  min-width: 25rem;
+}
+
+.playerName:hover {
+  color: rgb(80, 115, 255);
+  font-size: larger;
+  font-weight: 500;
+}
+
+.testItem {
+  cursor: move;
+  width: 200px;
+  background-color: lightblue;
+  margin: 0.5rem;
+  text-align: left;
+  font-size: 30px;
+}
