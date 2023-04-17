@@ -132,7 +132,7 @@ export default function Roster({
         <Toolbar></Toolbar>
         <div className={utilStyles.navbarSpacer}></div>
         <button
-          className={`${utilStyles.myFormButton} ${utilStyles.myFormButtonNew}`}
+          className={`${utilStyles.myFormButton} ${utilStyles.myFormButtonSeafoam}`}
         >
           <Link href="/players/newPlayer">+ Add Player</Link>
         </button>

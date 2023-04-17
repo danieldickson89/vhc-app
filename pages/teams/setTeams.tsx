@@ -182,8 +182,18 @@ export default function SetTeams({
         <Toolbar></Toolbar>
         <div className={utilStyles.setTeamsSpacer}></div>
         <div className={utilStyles.myFormRow}>
-          <button onClick={() => resetTeams()}>Reset</button>
-          <button onClick={() => autoFillNextPlayer()}>Autofill Player</button>
+          <button
+            className={`${utilStyles.myFormButton} ${utilStyles.myFormButtonGray}`}
+            onClick={() => resetTeams()}
+          >
+            Reset
+          </button>
+          <button
+            className={`${utilStyles.myFormButton} ${utilStyles.myFormButtonSeafoam}`}
+            onClick={() => autoFillNextPlayer()}
+          >
+            Autofill Player
+          </button>
         </div>
         <br />
         <div className={utilStyles.myRow}>
@@ -214,10 +224,16 @@ export default function SetTeams({
             {noTeamPlayers.map((player: Player, index: any) => (
               <div key={player.id}>
                 <div>
-                  <button onClick={() => addToTeam("addToOne", player)}>
+                  <button
+                    className={`${utilStyles.setTeamButton} ${utilStyles.myFormButtonSeafoam}`}
+                    onClick={() => addToTeam("addToOne", player)}
+                  >
                     Team 1
                   </button>
-                  <button onClick={() => addToTeam("addToTwo", player)}>
+                  <button
+                    className={`${utilStyles.setTeamButton} ${utilStyles.myFormButtonYellow}`}
+                    onClick={() => addToTeam("addToTwo", player)}
+                  >
                     Team 2
                   </button>{" "}
                   {player.name}
@@ -232,10 +248,16 @@ export default function SetTeams({
             {teamOne.map((player, index) => (
               <div key={player.id}>
                 <div>
-                  <button onClick={() => addToTeam("removeFromOne", player)}>
+                  <button
+                    className={`${utilStyles.setTeamButton} ${utilStyles.myFormButtonGray}`}
+                    onClick={() => addToTeam("removeFromOne", player)}
+                  >
                     Remove
                   </button>
-                  <button onClick={() => addToTeam("switchToTwo", player)}>
+                  <button
+                    className={`${utilStyles.setTeamButton} ${utilStyles.myFormButtonYellow}`}
+                    onClick={() => addToTeam("switchToTwo", player)}
+                  >
                     Switch Teams
                   </button>{" "}
                   {player.name}
@@ -250,10 +272,16 @@ export default function SetTeams({
             {teamTwo.map((player, index) => (
               <div key={player.id}>
                 <div>
-                  <button onClick={() => addToTeam("removeFromTwo", player)}>
+                  <button
+                    className={`${utilStyles.setTeamButton} ${utilStyles.myFormButtonGray}`}
+                    onClick={() => addToTeam("removeFromTwo", player)}
+                  >
                     Remove
                   </button>
-                  <button onClick={() => addToTeam("switchToOne", player)}>
+                  <button
+                    className={`${utilStyles.setTeamButton} ${utilStyles.myFormButtonSeafoam}`}
+                    onClick={() => addToTeam("switchToOne", player)}
+                  >
                     Switch Teams
                   </button>{" "}
                   {player.name}

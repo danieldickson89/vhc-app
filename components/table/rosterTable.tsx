@@ -33,7 +33,7 @@ export default function RosterTable({
     if (attending) {
       return (
         <button
-          className={`${utilStyles.attendingButton} ${utilStyles.myFormButtonSave}`}
+          className={`${utilStyles.attendingButton} ${utilStyles.myFormButtonSeafoam}`}
         >
           Yes
         </button>
@@ -41,7 +41,7 @@ export default function RosterTable({
     }
     return (
       <button
-        className={`${utilStyles.attendingButton} ${utilStyles.myFormButtonRed}`}
+        className={`${utilStyles.attendingButton} ${utilStyles.myFormButtonGray}`}
       >
         No
       </button>

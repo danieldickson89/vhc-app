@@ -14,7 +14,7 @@ export default function Home() {
 
       <div className={utilStyles.container}>
         <Toolbar></Toolbar>
-        <div className={utilStyles.navbarSpacer}></div>
+        <div className={utilStyles.homePageSpacer}></div>
         <h2>Welcome to Vagrant Hockey Club!</h2>
       </div>
     </>

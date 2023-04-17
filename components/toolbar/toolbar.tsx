@@ -27,7 +27,7 @@ export default function Toolbar() {
           className={utilStyles.fontAwesomeIcon}
           icon={faPeopleArrows}
         />
-        Pick Teams
+        Teams
       </Link>
     </div>
   );

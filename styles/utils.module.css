@@ -61,6 +61,10 @@
   margin-top: 4rem;
 }
 
+.homePageSpacer {
+  margin-top: 4.5rem;
+}
+
 .setTeamsSpacer {
   margin-top: 5rem;
 }
@@ -137,29 +141,9 @@
 }
 
 .fontAwesomeIcon {
-  margin-right: 0.5rem;
-}
-
-.fontAwesomeIconEdit {
-  cursor: pointer;
-  font-size: x-large;
-  color: rgb(64, 116, 246);
-  display: flex;
-  text-align: center;
-}
-
-.fontAwesomeIconEdit:hover {
-  color: rgba(64, 116, 246, 0.555);
-}
-
-.fontAwesomeIconDelete {
-  cursor: pointer;
-  font-size: x-large;
-  color: rgb(242, 80, 80);
-}
-
-.fontAwesomeIconDelete:hover {
-  color: rgba(242, 80, 80, 0.555);
+  margin-bottom: 0.1rem;
+  margin-right: 0.3rem;
+  font-size: large;
 }
 
 .myForm {
@@ -213,6 +197,15 @@
   margin: 1rem 0.25rem;
 }
 
+.setTeamButton {
+  border: 1.5px solid rgb(255, 255, 255);
+  border-radius: 6px;
+  font-size: large;
+  font-weight: 200;
+  cursor: pointer;
+  margin: 0.1rem 0.1rem 0.1rem 0;
+}
+
 .attendingButton {
   width: 4rem;
   border: 1.5px solid rgb(255, 255, 255);
@@ -223,11 +216,11 @@
   margin-left: 0.25rem;
 }
 
-.myFormButtonCancel {
+.myFormButtonGray {
   background-color: rgba(234, 234, 234, 0.877);
 }
 
-.myFormButtonCancel:hover {
+.myFormButtonGray:hover {
   background-color: rgba(234, 234, 234, 0.555);
 }
 
@@ -256,6 +249,22 @@
 
 .myFormButtonRed:hover {
   background-color: rgba(242, 80, 80, 0.555);
+}
+
+.myFormButtonSeafoam {
+  background-color: rgb(229, 255, 255);
+}
+
+.myFormButtonSeafoam:hover {
+  background-color: rgb(229, 255, 255, 0.555);
+}
+
+.myFormButtonYellow {
+  background-color: rgb(255, 250, 99);
+}
+
+.myFormButtonYellow:hover {
+  background-color: rgb(255, 250, 99, 0.555);
 }
 
 .myColumn {

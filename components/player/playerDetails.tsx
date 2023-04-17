@@ -158,7 +158,7 @@ export default function PlayerDetails({
           className={`${utilStyles.myFormRow} ${utilStyles.myFormRowCentered}`}
         >
           <button
-            className={`${utilStyles.myFormButton} ${utilStyles.myFormButtonCancel}`}
+            className={`${utilStyles.myFormButton} ${utilStyles.myFormButtonGray}`}
           >
             <Link href={`/players/roster`}>Cancel</Link>
           </button>
