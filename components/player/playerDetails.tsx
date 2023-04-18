@@ -3,6 +3,7 @@ import Toolbar from "../../components/toolbar/toolbar";
 import Link from "next/link";
 import { useState } from "react";
 import { useRouter } from "next/router";
+import { Button, HStack } from "@chakra-ui/react";
 
 export default function PlayerDetails({
   player,
@@ -154,32 +155,20 @@ export default function PlayerDetails({
             onChange={(e) => setStick(+e.target.value)}
           />
         </div>
-        <div
-          className={`${utilStyles.myFormRow} ${utilStyles.myFormRowCentered}`}
-        >
-          <button
-            className={`${utilStyles.myFormButton} ${utilStyles.myFormButtonGray}`}
-          >
+        <HStack mt="5" justify="center">
+          <Button w="5em" colorScheme="gray">
             <Link href={`/players/roster`}>Cancel</Link>
-          </button>
+          </Button>
           {!isNew ? (
-            <button
-              className={`${utilStyles.myFormButton} ${utilStyles.myFormButtonRed}`}
-              onClick={deletePlayer}
-            >
+            <Button w="5em" colorScheme="red" onClick={deletePlayer}>
               Delete
-            </button>
-          ) : (
-            <></>
-          )}
+            </Button>
+          ) : null}
 
-          <button
-            className={`${utilStyles.myFormButton} ${utilStyles.myFormButtonSave}`}
-            onClick={savePlayer}
-          >
+          <Button w="5em" colorScheme="cyan" onClick={savePlayer}>
             Save
-          </button>
-        </div>
+          </Button>
+        </HStack>
       </div>
     </div>
   );

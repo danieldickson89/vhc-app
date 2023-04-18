@@ -4,6 +4,7 @@ import Toolbar from "../../components/toolbar/toolbar";
 import RosterTable from "../../components/table/rosterTable";
 import { useState } from "react";
 import Link from "next/link";
+import { Button, VStack } from "@chakra-ui/react";
 
 export async function getServerSideProps() {
   // Trying to find a way to have the GET call use whatever current header is active
@@ -123,27 +124,22 @@ export default function Roster({
   };
 
   return (
-    <>
+    <VStack>
       <Head>
         <title>VHC</title>
       </Head>
 
-      <div className={utilStyles.container}>
-        <Toolbar></Toolbar>
-        <div className={utilStyles.navbarSpacer}></div>
-        <button
-          className={`${utilStyles.myFormButton} ${utilStyles.myFormButtonSeafoam}`}
-        >
-          <Link href="/players/newPlayer">+ Add Player</Link>
-        </button>
-        <RosterTable
-          players={currentPlayers}
-          pushPlayers={pullPlayers}
-          tableHeaders={tableHeaders}
-          pushTableHeaders={pullTableHeaders}
-          apiBaseUrl={apiBaseUrl}
-        ></RosterTable>
-      </div>
-    </>
+      <div className={utilStyles.navbarSpacer}></div>
+      <Button w="10em" colorScheme="gray">
+        <Link href="/players/newPlayer">+ Add Player</Link>
+      </Button>
+      <RosterTable
+        players={currentPlayers}
+        pushPlayers={pullPlayers}
+        tableHeaders={tableHeaders}
+        pushTableHeaders={pullTableHeaders}
+        apiBaseUrl={apiBaseUrl}
+      ></RosterTable>
+    </VStack>
   );
 }
