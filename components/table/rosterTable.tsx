@@ -1,7 +1,7 @@
 import utilStyles from "../../styles/utils.module.css";
 import Link from "next/link";
 import calculateOverall from "../../services/calculateOverall";
-import { Button } from "@chakra-ui/react";
+import { Box, Button } from "@chakra-ui/react";
 import {
   Table,
   Thead,
@@ -91,68 +91,75 @@ export default function RosterTable({
   }
 
   return (
-    <TableContainer className={utilStyles.roundedBorder}>
-      <Table variant="simple">
-        <Thead>
-          <Tr>
-            {tableHeaders.map((tableHeader: Header, index: any) => (
-              <Th
-                key={tableHeader.title}
-                onClick={() => handleSortChange(index)}
-                className={utilStyles.tableHeader}
-              >
-                {tableHeader.sortActive && tableHeader.sortAsc ? (
-                  <ChevronUpIcon w="4" h="4"></ChevronUpIcon>
-                ) : null}
-                {tableHeader.sortActive && !tableHeader.sortAsc ? (
-                  <ChevronDownIcon w="4" h="4"></ChevronDownIcon>
-                ) : null}
-                {tableHeader.title}
-              </Th>
-            ))}
-          </Tr>
-        </Thead>
-        <Tbody>
-          {players.map((player: Player) => (
-            <Tr key={player.id}>
-              <Td>
-                {player.attending ? (
-                  <Button
-                    w="4em"
-                    colorScheme="cyan"
-                    onClick={() => setAttendance(player.id)}
-                  >
-                    Yes
-                  </Button>
-                ) : (
-                  <Button
-                    w="4em"
-                    colorScheme="gray"
-                    onClick={() => setAttendance(player.id)}
-                  >
-                    No
-                  </Button>
-                )}
-              </Td>
-              <Td>
-                <Link
-                  href={`/players/${player.id}`}
-                  className={utilStyles.playerName}
+    <TableContainer>
+      <Box
+        overflowY="auto"
+        maxHeight="45em"
+        className={utilStyles.roundedBorder}
+      >
+        <Table variant="simple">
+          <Thead position="sticky" top={0} bgColor="yellow.100" zIndex={9998}>
+            <Tr>
+              {tableHeaders.map((tableHeader: Header, index: any) => (
+                <Th
+                  cursor="pointer"
+                  key={tableHeader.title}
+                  onClick={() => handleSortChange(index)}
                 >
-                  {player.name}
-                </Link>
-              </Td>
-              <Td>{calculateOverall(player)}</Td>
-              <Td>{player.offense}</Td>
-              <Td>{player.defense}</Td>
-              <Td>{player.skating}</Td>
-              <Td>{player.passing}</Td>
-              <Td>{player.shot}</Td>
-              <Td>{player.stick}</Td>
+                  {tableHeader.sortActive && tableHeader.sortAsc ? (
+                    <ChevronUpIcon w="4" h="4"></ChevronUpIcon>
+                  ) : null}
+                  {tableHeader.sortActive && !tableHeader.sortAsc ? (
+                    <ChevronDownIcon w="4" h="4"></ChevronDownIcon>
+                  ) : null}
+                  {tableHeader.title}
+                </Th>
+              ))}
             </Tr>
-          ))}
-        </Tbody>
-      </Table>
+          </Thead>
+          <Tbody>
+            {players.map((player: Player) => (
+              <Tr key={player.id}>
+                <Td>
+                  {player.attending ? (
+                    <Button
+                      w="4em"
+                      colorScheme="cyan"
+                      textColor="white"
+                      onClick={() => setAttendance(player.id)}
+                    >
+                      Yes
+                    </Button>
+                  ) : (
+                    <Button
+                      w="4em"
+                      colorScheme="gray"
+                      onClick={() => setAttendance(player.id)}
+                    >
+                      No
+                    </Button>
+                  )}
+                </Td>
+                <Td>
+                  <Link
+                    href={`/players/${player.id}`}
+                    className={utilStyles.playerName}
+                  >
+                    {player.name}
+                  </Link>
+                </Td>
+                <Td>{calculateOverall(player)}</Td>
+                <Td>{player.offense}</Td>
+                <Td>{player.defense}</Td>
+                <Td>{player.skating}</Td>
+                <Td>{player.passing}</Td>
+                <Td>{player.shot}</Td>
+                <Td>{player.stick}</Td>
+              </Tr>
+            ))}
+          </Tbody>
+        </Table>
+      </Box>
     </TableContainer>
   );
 }

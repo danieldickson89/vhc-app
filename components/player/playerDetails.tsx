@@ -3,7 +3,19 @@ import Toolbar from "../../components/toolbar/toolbar";
 import Link from "next/link";
 import { useState } from "react";
 import { useRouter } from "next/router";
-import { Button, HStack } from "@chakra-ui/react";
+import {
+  Button,
+  HStack,
+  Input,
+  NumberInput,
+  NumberInputField,
+  NumberInputStepper,
+  NumberIncrementStepper,
+  NumberDecrementStepper,
+  SimpleGrid,
+  Container,
+  VStack,
+} from "@chakra-ui/react";
 
 export default function PlayerDetails({
   player,
@@ -17,22 +29,12 @@ export default function PlayerDetails({
   const router = useRouter();
 
   let [currName, setName] = useState<string>(isNew ? "" : player.name);
-  let [currOffense, setOffense] = useState<number | null>(
-    isNew ? null : player.offense
-  );
-  let [currDefense, setDefense] = useState<number | null>(
-    isNew ? null : player.defense
-  );
-  let [currSkating, setSkating] = useState<number | null>(
-    isNew ? null : player.skating
-  );
-  let [currPassing, setPassing] = useState<number | null>(
-    isNew ? null : player.passing
-  );
-  let [currShot, setShot] = useState<number | null>(isNew ? null : player.shot);
-  let [currStick, setStick] = useState<number | null>(
-    isNew ? null : player.stick
-  );
+  let [currOffense, setOffense] = useState<number>(isNew ? 60 : player.offense);
+  let [currDefense, setDefense] = useState<number>(isNew ? 60 : player.defense);
+  let [currSkating, setSkating] = useState<number>(isNew ? 60 : player.skating);
+  let [currPassing, setPassing] = useState<number>(isNew ? 60 : player.passing);
+  let [currShot, setShot] = useState<number>(isNew ? 60 : player.shot);
+  let [currStick, setStick] = useState<number>(isNew ? 60 : player.stick);
 
   async function savePlayer() {
     const currPlayer = {
@@ -70,106 +72,121 @@ export default function PlayerDetails({
   }
 
   return (
-    <div className={utilStyles.container}>
-      <Toolbar></Toolbar>
-      <div className={utilStyles.navbarSpacer}></div>
-      <div className={utilStyles.myForm}>
-        <div className={utilStyles.myFormRow}>
-          <label className={utilStyles.myLabel}>Full Name </label>
-          <input
-            className={`${utilStyles.myInput} ${utilStyles.myTextInput}`}
-            name="fullName"
+    <Container>
+      <VStack>
+        <SimpleGrid w="20em" mt="4em" columns={2} spacingY={3}>
+          <label>Full Name </label>
+          <Input
+            w="12em"
             defaultValue={currName}
             onChange={(e) => setName(e.target.value)}
           />
-        </div>
-        <div className={utilStyles.myFormRow}>
-          <label className={utilStyles.myLabel}>Offense </label>
-          <input
-            className={`${utilStyles.myInput} ${utilStyles.myNumberInput}`}
-            name="offense"
-            defaultValue={currOffense?.toString()}
-            type="number"
-            min="0"
-            max="100"
-            onChange={(e) => setOffense(+e.target.value)}
-          />
-        </div>
-        <div className={utilStyles.myFormRow}>
-          <label className={utilStyles.myLabel}>Defense </label>
-          <input
-            className={`${utilStyles.myInput} ${utilStyles.myNumberInput}`}
-            name="defense"
-            defaultValue={currDefense?.toString()}
-            type="number"
-            min="0"
-            max="100"
-            onChange={(e) => setDefense(+e.target.value)}
-          />
-        </div>
-        <div className={utilStyles.myFormRow}>
-          <label className={utilStyles.myLabel}>Skating </label>
-          <input
-            className={`${utilStyles.myInput} ${utilStyles.myNumberInput}`}
-            name="skating"
-            defaultValue={currSkating?.toString()}
-            type="number"
-            min="0"
-            max="100"
-            onChange={(e) => setSkating(+e.target.value)}
-          />
-        </div>
-        <div className={utilStyles.myFormRow}>
-          <label className={utilStyles.myLabel}>Passing </label>
-          <input
-            className={`${utilStyles.myInput} ${utilStyles.myNumberInput}`}
-            name="passing"
-            defaultValue={currPassing?.toString()}
-            type="number"
-            min="0"
-            max="100"
-            onChange={(e) => setPassing(+e.target.value)}
-          />
-        </div>
-        <div className={utilStyles.myFormRow}>
-          <label className={utilStyles.myLabel}>Shot </label>
-          <input
-            className={`${utilStyles.myInput} ${utilStyles.myNumberInput}`}
-            name="shot"
-            defaultValue={currShot?.toString()}
-            type="number"
-            min="0"
-            max="100"
-            onChange={(e) => setShot(+e.target.value)}
-          />
-        </div>
-        <div className={utilStyles.myFormRow}>
-          <label className={utilStyles.myLabel}>Stick </label>
-          <input
-            className={`${utilStyles.myInput} ${utilStyles.myNumberInput}`}
-            name="stick"
-            defaultValue={currStick?.toString()}
-            type="number"
-            min="0"
-            max="100"
-            onChange={(e) => setStick(+e.target.value)}
-          />
-        </div>
-        <HStack mt="5" justify="center">
-          <Button w="5em" colorScheme="gray">
-            <Link href={`/players/roster`}>Cancel</Link>
+          <label>Offense </label>
+          <NumberInput
+            defaultValue={currOffense}
+            size="md"
+            maxW={20}
+            min={0}
+            max={100}
+            onChange={(valueString) => setOffense(+valueString)}
+          >
+            <NumberInputField />
+            <NumberInputStepper>
+              <NumberIncrementStepper />
+              <NumberDecrementStepper />
+            </NumberInputStepper>
+          </NumberInput>
+          <label>Defense </label>
+          <NumberInput
+            defaultValue={currDefense}
+            size="md"
+            maxW={20}
+            min={0}
+            max={100}
+            onChange={(valueString) => setDefense(+valueString)}
+          >
+            <NumberInputField />
+            <NumberInputStepper>
+              <NumberIncrementStepper />
+              <NumberDecrementStepper />
+            </NumberInputStepper>
+          </NumberInput>
+          <label>Skating </label>
+          <NumberInput
+            defaultValue={currSkating}
+            size="md"
+            maxW={20}
+            min={0}
+            max={100}
+            onChange={(valueString) => setSkating(+valueString)}
+          >
+            <NumberInputField />
+            <NumberInputStepper>
+              <NumberIncrementStepper />
+              <NumberDecrementStepper />
+            </NumberInputStepper>
+          </NumberInput>
+          <label>Passing </label>
+          <NumberInput
+            defaultValue={currPassing}
+            size="md"
+            maxW={20}
+            min={0}
+            max={100}
+            onChange={(valueString) => setPassing(+valueString)}
+          >
+            <NumberInputField />
+            <NumberInputStepper>
+              <NumberIncrementStepper />
+              <NumberDecrementStepper />
+            </NumberInputStepper>
+          </NumberInput>
+          <label>Shot </label>
+          <NumberInput
+            defaultValue={currShot}
+            size="md"
+            maxW={20}
+            min={0}
+            max={100}
+            onChange={(valueString) => setShot(+valueString)}
+          >
+            <NumberInputField />
+            <NumberInputStepper>
+              <NumberIncrementStepper />
+              <NumberDecrementStepper />
+            </NumberInputStepper>
+          </NumberInput>
+          <label>Stick </label>
+          <NumberInput
+            defaultValue={currStick}
+            size="md"
+            maxW={20}
+            min={0}
+            max={100}
+            onChange={(valueString) => setStick(+valueString)}
+          >
+            <NumberInputField />
+            <NumberInputStepper>
+              <NumberIncrementStepper />
+              <NumberDecrementStepper />
+            </NumberInputStepper>
+          </NumberInput>
+        </SimpleGrid>
+      </VStack>
+      <HStack mt="5" justify="center">
+        <Button w="7em" colorScheme="gray">
+          <Link href={`/players/roster`}>Cancel</Link>
+        </Button>
+        {!isNew ? (
+          <Button w="7em" colorScheme="red" onClick={deletePlayer}>
+            Delete
           </Button>
-          {!isNew ? (
-            <Button w="5em" colorScheme="red" onClick={deletePlayer}>
-              Delete
-            </Button>
-          ) : null}
+        ) : null}
 
-          <Button w="5em" colorScheme="cyan" onClick={savePlayer}>
-            Save
-          </Button>
-        </HStack>
-      </div>
-    </div>
+        <Button w="7em" colorScheme="cyan" textColor="white" onClick={savePlayer}>
+          Save
+        </Button>
+      </HStack>
+    </Container>
   );
 }
