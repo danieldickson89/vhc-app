@@ -2,6 +2,15 @@ import Head from "next/head";
 import utilStyles from "../../styles/utils.module.css";
 import Toolbar from "../../components/toolbar/toolbar";
 import { useState } from "react";
+import {
+  Box,
+  Button,
+  Container,
+  HStack,
+  SimpleGrid,
+  Text,
+  VStack,
+} from "@chakra-ui/react";
 
 export async function getServerSideProps() {
   const apiBaseUrl = process.env.API_BASE_URL;
@@ -173,124 +182,186 @@ export default function SetTeams({
   }
 
   return (
-    <>
+    <VStack>
       <Head>
         <title>VHC</title>
       </Head>
-
-      <div className={utilStyles.container}>
-        <Toolbar></Toolbar>
-        <div className={utilStyles.setTeamsSpacer}></div>
-        <div className={utilStyles.myFormRow}>
-          <button
-            className={`${utilStyles.myFormButton} ${utilStyles.myFormButtonGray}`}
-            onClick={() => resetTeams()}
+      <HStack mt="4em">
+        <Button w="8em" onClick={() => resetTeams()}>
+          Reset
+        </Button>
+        <Button w="8em" onClick={() => autoFillNextPlayer()}>
+          Autofill
+        </Button>
+      </HStack>
+      <HStack spacing="5" p="3" className={utilStyles.roundedBorder}>
+        <Box>
+          <VStack>
+            <Text>Overall Averages</Text>
+            <HStack>
+              <Text w="4em">Offense</Text>
+              <Text w="4em">Defense</Text>
+              <Text w="4em">Skating</Text>
+              <Text w="4em">Passing</Text>
+              <Text w="3em">Shot</Text>
+              <Text w="3em">Stick</Text>
+            </HStack>
+            <HStack>
+              <Box w="4em">{overallAvgs[0]}</Box>
+              <Box w="4em">{overallAvgs[1]}</Box>
+              <Box w="4em">{overallAvgs[2]}</Box>
+              <Box w="4em">{overallAvgs[3]}</Box>
+              <Box w="3em">{overallAvgs[4]}</Box>
+              <Box w="3em">{overallAvgs[5]}</Box>
+            </HStack>
+          </VStack>
+        </Box>
+        <Box>
+          <VStack>
+            <Text>Team 1 Diffs</Text>
+            <Box>
+              {Math.round((overallAvgs[0] - teamOneAvgs[0]) * 10) / 10}
+              {Math.round((overallAvgs[1] - teamOneAvgs[1]) * 10) / 10}
+              {Math.round((overallAvgs[2] - teamOneAvgs[2]) * 10) / 10}
+              {Math.round((overallAvgs[3] - teamOneAvgs[3]) * 10) / 10}
+              {Math.round((overallAvgs[4] - teamOneAvgs[4]) * 10) / 10}
+              {Math.round((overallAvgs[5] - teamOneAvgs[5]) * 10) / 10}
+            </Box>
+          </VStack>
+        </Box>
+        <Box>
+          <VStack>
+            <Text>Team 2 Diffs</Text>
+            <Box>
+              {Math.round((overallAvgs[0] - teamTwoAvgs[0]) * 10) / 10}
+              {Math.round((overallAvgs[1] - teamTwoAvgs[1]) * 10) / 10}
+              {Math.round((overallAvgs[2] - teamTwoAvgs[2]) * 10) / 10}
+              {Math.round((overallAvgs[3] - teamTwoAvgs[3]) * 10) / 10}
+              {Math.round((overallAvgs[4] - teamTwoAvgs[4]) * 10) / 10}
+              {Math.round((overallAvgs[5] - teamTwoAvgs[5]) * 10) / 10}
+            </Box>
+          </VStack>
+        </Box>
+      </HStack>
+      <SimpleGrid columns={3}>
+        <Box
+          className={utilStyles.roundedBorder}
+          overflowY="auto"
+          maxHeight="40em"
+          m="3"
+          pb="3"
+          minH="16em"
+        >
+          <Text
+            position="sticky"
+            top={0}
+            fontWeight="bold"
+            fontSize="xl"
+            bgColor="gray.100"
+            p="2"
+            zIndex={9998}
           >
-            Reset
-          </button>
-          <button
-            className={`${utilStyles.myFormButton} ${utilStyles.myFormButtonSeafoam}`}
-            onClick={() => autoFillNextPlayer()}
+            Unassigned Players
+          </Text>
+          {noTeamPlayers.map((player: Player) => (
+            <HStack mt="2" pl="3" pr="3" spacing="3" key={player.id}>
+              <Button
+                w="5em"
+                colorScheme="cyan"
+                textColor="white"
+                onClick={() => addToTeam("addToOne", player)}
+              >
+                Team 1
+              </Button>
+              <Button
+                w="5em"
+                colorScheme="yellow"
+                onClick={() => addToTeam("addToTwo", player)}
+              >
+                Team 2
+              </Button>
+              <Text>{player.name}</Text>
+            </HStack>
+          ))}
+        </Box>
+        <Box
+          className={utilStyles.roundedBorder}
+          overflowY="auto"
+          maxHeight="40em"
+          m="3"
+          pb="3"
+          minH="16em"
+        >
+          <Text
+            position="sticky"
+            top={0}
+            fontWeight="bold"
+            fontSize="xl"
+            bgColor="gray.100"
+            p="2"
+            zIndex={9998}
           >
-            Autofill Player
-          </button>
-        </div>
-        <br />
-        <div className={utilStyles.myRow}>
-          <div
-            className={`${utilStyles.myColumn} ${utilStyles.oneThirdColumn}`}
+            Team 1
+          </Text>
+          {teamOne.map((player, index) => (
+            <HStack mt="2" pl="3" pr="3" spacing="3" key={player.id}>
+              <Button
+                w="5em"
+                onClick={() => addToTeam("removeFromOne", player)}
+              >
+                Remove
+              </Button>
+              <Button
+                w="5em"
+                colorScheme="yellow"
+                onClick={() => addToTeam("switchToTwo", player)}
+              >
+                Switch
+              </Button>
+              <Text>{player.name}</Text>
+            </HStack>
+          ))}
+        </Box>
+        <Box
+          className={utilStyles.roundedBorder}
+          overflowY="auto"
+          maxHeight="40em"
+          m="3"
+          pb="3"
+          minH="16em"
+        >
+          <Text
+            position="sticky"
+            top={0}
+            fontWeight="bold"
+            fontSize="xl"
+            bgColor="gray.100"
+            p="2"
+            zIndex={9998}
           >
-            {overallAvgs[0]} {overallAvgs[1]} {overallAvgs[2]} {overallAvgs[3]}{" "}
-            {overallAvgs[4]} {overallAvgs[5]}
-          </div>
-          <div
-            className={`${utilStyles.myColumn} ${utilStyles.oneThirdColumn}`}
-          >
-            {teamOneAvgs[0]} {teamOneAvgs[1]} {teamOneAvgs[2]} {teamOneAvgs[3]}{" "}
-            {teamOneAvgs[4]} {teamOneAvgs[5]}
-          </div>
-          <div
-            className={`${utilStyles.myColumn} ${utilStyles.oneThirdColumn}`}
-          >
-            {teamTwoAvgs[0]} {teamTwoAvgs[1]} {teamTwoAvgs[2]} {teamTwoAvgs[3]}{" "}
-            {teamTwoAvgs[4]} {teamTwoAvgs[5]}
-          </div>
-        </div>
-        <div className={utilStyles.myRow}>
-          <div
-            className={`${utilStyles.myColumn} ${utilStyles.oneThirdColumn}`}
-          >
-            <div>Unassigned</div>
-            {noTeamPlayers.map((player: Player, index: any) => (
-              <div key={player.id}>
-                <div>
-                  <button
-                    className={`${utilStyles.setTeamButton} ${utilStyles.myFormButtonSeafoam}`}
-                    onClick={() => addToTeam("addToOne", player)}
-                  >
-                    Team 1
-                  </button>
-                  <button
-                    className={`${utilStyles.setTeamButton} ${utilStyles.myFormButtonYellow}`}
-                    onClick={() => addToTeam("addToTwo", player)}
-                  >
-                    Team 2
-                  </button>{" "}
-                  {player.name}
-                </div>
-              </div>
-            ))}
-          </div>
-          <div
-            className={`${utilStyles.myColumn} ${utilStyles.oneThirdColumn}`}
-          >
-            <div>Team 1</div>
-            {teamOne.map((player, index) => (
-              <div key={player.id}>
-                <div>
-                  <button
-                    className={`${utilStyles.setTeamButton} ${utilStyles.myFormButtonGray}`}
-                    onClick={() => addToTeam("removeFromOne", player)}
-                  >
-                    Remove
-                  </button>
-                  <button
-                    className={`${utilStyles.setTeamButton} ${utilStyles.myFormButtonYellow}`}
-                    onClick={() => addToTeam("switchToTwo", player)}
-                  >
-                    Switch Teams
-                  </button>{" "}
-                  {player.name}
-                </div>
-              </div>
-            ))}
-          </div>
-          <div
-            className={`${utilStyles.myColumn} ${utilStyles.oneThirdColumn}`}
-          >
-            <div>Team 2</div>
-            {teamTwo.map((player, index) => (
-              <div key={player.id}>
-                <div>
-                  <button
-                    className={`${utilStyles.setTeamButton} ${utilStyles.myFormButtonGray}`}
-                    onClick={() => addToTeam("removeFromTwo", player)}
-                  >
-                    Remove
-                  </button>
-                  <button
-                    className={`${utilStyles.setTeamButton} ${utilStyles.myFormButtonSeafoam}`}
-                    onClick={() => addToTeam("switchToOne", player)}
-                  >
-                    Switch Teams
-                  </button>{" "}
-                  {player.name}
-                </div>
-              </div>
-            ))}
-          </div>
-        </div>
-      </div>
-    </>
+            Team 2
+          </Text>
+          {teamTwo.map((player, index) => (
+            <HStack mt="2" pl="3" pr="3" spacing="3" key={player.id}>
+              <Button
+                w="5em"
+                onClick={() => addToTeam("removeFromTwo", player)}
+              >
+                Remove
+              </Button>
+              <Button
+                w="5em"
+                colorScheme="cyan"
+                textColor="white"
+                onClick={() => addToTeam("switchToOne", player)}
+              >
+                Switch
+              </Button>
+              <Text>{player.name}</Text>
+            </HStack>
+          ))}
+        </Box>
+      </SimpleGrid>
+    </VStack>
   );
 }
