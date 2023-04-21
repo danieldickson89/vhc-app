@@ -98,7 +98,7 @@ export default function RosterTable({
         className={utilStyles.roundedBorder}
       >
         <Table variant="simple">
-          <Thead position="sticky" top={0} bgColor="yellow.100" zIndex={9998}>
+          <Thead position="sticky" top={0} bgColor="yellow.300" zIndex={9998}>
             <Tr>
               {tableHeaders.map((tableHeader: Header, index: any) => (
                 <Th

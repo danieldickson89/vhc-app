@@ -10,6 +10,13 @@ import {
   SimpleGrid,
   Text,
   VStack,
+  Table,
+  Thead,
+  Th,
+  Tbody,
+  Tr,
+  Td,
+  TableContainer,
 } from "@chakra-ui/react";
 
 export async function getServerSideProps() {
@@ -181,6 +188,15 @@ export default function SetTeams({
     }
   }
 
+  function overallAvgDiff(team: string, index: number) {
+    if (team === "Team 1" && teamOne.length > 0) {
+      return Math.round((teamOneAvgs[index] - overallAvgs[index]) * 10) / 10;
+    } else if (team === "Team 2" && teamTwo.length > 0) {
+      return Math.round((teamTwoAvgs[index] - overallAvgs[index]) * 10) / 10;
+    }
+    return 0;
+  }
+
   return (
     <VStack>
       <Head>
@@ -195,53 +211,57 @@ export default function SetTeams({
         </Button>
       </HStack>
       <HStack spacing="5" p="3" className={utilStyles.roundedBorder}>
-        <Box>
-          <VStack>
-            <Text>Overall Averages</Text>
-            <HStack>
-              <Text w="4em">Offense</Text>
-              <Text w="4em">Defense</Text>
-              <Text w="4em">Skating</Text>
-              <Text w="4em">Passing</Text>
-              <Text w="3em">Shot</Text>
-              <Text w="3em">Stick</Text>
-            </HStack>
-            <HStack>
-              <Box w="4em">{overallAvgs[0]}</Box>
-              <Box w="4em">{overallAvgs[1]}</Box>
-              <Box w="4em">{overallAvgs[2]}</Box>
-              <Box w="4em">{overallAvgs[3]}</Box>
-              <Box w="3em">{overallAvgs[4]}</Box>
-              <Box w="3em">{overallAvgs[5]}</Box>
-            </HStack>
-          </VStack>
-        </Box>
-        <Box>
-          <VStack>
-            <Text>Team 1 Diffs</Text>
-            <Box>
-              {Math.round((overallAvgs[0] - teamOneAvgs[0]) * 10) / 10}
-              {Math.round((overallAvgs[1] - teamOneAvgs[1]) * 10) / 10}
-              {Math.round((overallAvgs[2] - teamOneAvgs[2]) * 10) / 10}
-              {Math.round((overallAvgs[3] - teamOneAvgs[3]) * 10) / 10}
-              {Math.round((overallAvgs[4] - teamOneAvgs[4]) * 10) / 10}
-              {Math.round((overallAvgs[5] - teamOneAvgs[5]) * 10) / 10}
-            </Box>
-          </VStack>
-        </Box>
-        <Box>
-          <VStack>
-            <Text>Team 2 Diffs</Text>
-            <Box>
-              {Math.round((overallAvgs[0] - teamTwoAvgs[0]) * 10) / 10}
-              {Math.round((overallAvgs[1] - teamTwoAvgs[1]) * 10) / 10}
-              {Math.round((overallAvgs[2] - teamTwoAvgs[2]) * 10) / 10}
-              {Math.round((overallAvgs[3] - teamTwoAvgs[3]) * 10) / 10}
-              {Math.round((overallAvgs[4] - teamTwoAvgs[4]) * 10) / 10}
-              {Math.round((overallAvgs[5] - teamTwoAvgs[5]) * 10) / 10}
-            </Box>
-          </VStack>
-        </Box>
+        <Table>
+          <Thead>
+            <Tr>
+              <Th>Team</Th>
+              <Th>Offense</Th>
+              <Th>Defense</Th>
+              <Th>Skating</Th>
+              <Th>Passing</Th>
+              <Th>Shot</Th>
+              <Th>Stick</Th>
+            </Tr>
+          </Thead>
+          <Tbody>
+            <Tr>
+              <Td>Overall</Td>
+              {overallAvgs.map((avg) => (
+                <Td fontWeight="bold">{avg}</Td>
+              ))}
+            </Tr>
+            <Tr>
+              <Td>Team 1</Td>
+              {teamOneAvgs.map((avg, index) => (
+                <Td
+                  fontWeight="bold"
+                  textColor={
+                    overallAvgDiff("Team 1", index) < 0
+                      ? "red.400"
+                      : "green.400"
+                  }
+                >
+                  {avg} ({overallAvgDiff("Team 1", index)})
+                </Td>
+              ))}
+            </Tr>
+            <Tr>
+              <Td>Team 2</Td>
+              {teamTwoAvgs.map((avg, index) => (
+                <Td
+                  fontWeight="bold"
+                  textColor={
+                    overallAvgDiff("Team 2", index) < 0
+                      ? "red.400"
+                      : "green.400"
+                  }
+                >
+                  {avg} ({overallAvgDiff("Team 2", index)})
+                </Td>
+              ))}
+            </Tr>
+          </Tbody>
+        </Table>
       </HStack>
       <SimpleGrid columns={3}>
         <Box
