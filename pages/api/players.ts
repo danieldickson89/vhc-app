@@ -1,16 +1,9 @@
-import sortData from "@/services/sortData";
 import { supabase } from "../../lib/supabaseClient";
 import type { NextApiRequest, NextApiResponse } from "next";
 
 type Data = {
   message: string;
   response: any;
-};
-
-type ApiResponse = {
-  response: {
-    data: any;
-  };
 };
 
 export default async function handler(

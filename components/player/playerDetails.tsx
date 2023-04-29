@@ -15,6 +15,8 @@ import {
   SimpleGrid,
   Container,
   VStack,
+  Box,
+  useToast,
 } from "@chakra-ui/react";
 
 export default function PlayerDetails({
@@ -27,6 +29,7 @@ export default function PlayerDetails({
   apiBaseUrl: string;
 }) {
   const router = useRouter();
+  const toast = useToast();
 
   let [currName, setName] = useState<string>(isNew ? "" : player.name);
   let [currOffense, setOffense] = useState<number>(isNew ? 60 : player.offense);
@@ -36,28 +39,46 @@ export default function PlayerDetails({
   let [currShot, setShot] = useState<number>(isNew ? 60 : player.shot);
   let [currStick, setStick] = useState<number>(isNew ? 60 : player.stick);
 
+  function invalidPlayerInfo(): [number, string, string] {
+    if (currName == null || currName === "") {
+      return [1, "Invalid Field.", "Please provide a name"];
+    }
+    return [0, "", ""];
+  }
+
   async function savePlayer() {
-    const currPlayer = {
-      name: currName,
-      offense: currOffense,
-      defense: currDefense,
-      skating: currSkating,
-      passing: currPassing,
-      shot: currShot,
-      stick: currStick,
-      attending: isNew ? true : player.attending,
-    };
-    const reqUrl = isNew
-      ? `${apiBaseUrl}player`
-      : `${apiBaseUrl}player?id=${player.id}`;
-    await fetch(reqUrl, {
-      method: isNew ? "POST" : "PUT",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify(currPlayer),
-    });
-    router.push("/players/roster");
+    const invalid = await invalidPlayerInfo();
+    if (invalid[0]) {
+      toast({
+        title: invalid[1],
+        description: invalid[2],
+        status: "error",
+        duration: 9000,
+        isClosable: true,
+      });
+    } else {
+      const currPlayer = {
+        name: currName,
+        offense: currOffense,
+        defense: currDefense,
+        skating: currSkating,
+        passing: currPassing,
+        shot: currShot,
+        stick: currStick,
+        attending: isNew ? true : player.attending,
+      };
+      const reqUrl = isNew
+        ? `${apiBaseUrl}player`
+        : `${apiBaseUrl}player?id=${player.id}`;
+      await fetch(reqUrl, {
+        method: isNew ? "POST" : "PUT",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(currPlayer),
+      });
+      router.push("/players/roster");
+    }
   }
 
   async function deletePlayer() {
@@ -183,7 +204,12 @@ export default function PlayerDetails({
           </Button>
         ) : null}
 
-        <Button w="7em" colorScheme="cyan" textColor="white" onClick={savePlayer}>
+        <Button
+          w="7em"
+          colorScheme="cyan"
+          textColor="white"
+          onClick={savePlayer}
+        >
           Save
         </Button>
       </HStack>

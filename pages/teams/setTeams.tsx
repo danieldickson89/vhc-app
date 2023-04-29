@@ -189,12 +189,11 @@ export default function SetTeams({
   }
 
   function overallAvgDiff(team: string, index: number) {
-    if (team === "Team 1" && teamOne.length > 0) {
+    if (team === "Team 1") {
       return Math.round((teamOneAvgs[index] - overallAvgs[index]) * 10) / 10;
-    } else if (team === "Team 2" && teamTwo.length > 0) {
+    } else {
       return Math.round((teamTwoAvgs[index] - overallAvgs[index]) * 10) / 10;
     }
-    return 0;
   }
 
   return (
@@ -227,36 +226,48 @@ export default function SetTeams({
             <Tr>
               <Td>Overall</Td>
               {overallAvgs.map((avg) => (
-                <Td fontWeight="bold">{avg}</Td>
+                <Td>{avg}</Td>
               ))}
             </Tr>
             <Tr>
               <Td>Team 1</Td>
               {teamOneAvgs.map((avg, index) => (
-                <Td
-                  fontWeight="bold"
-                  textColor={
-                    overallAvgDiff("Team 1", index) < 0
-                      ? "red.400"
-                      : "green.400"
-                  }
-                >
-                  {avg} ({overallAvgDiff("Team 1", index)})
+                <Td>
+                  <HStack>
+                    <Box>{avg}</Box>
+                    {teamOne.length > 0 ? (
+                      <Box
+                        textColor={
+                          overallAvgDiff("Team 1", index) < 0
+                            ? "red.400"
+                            : "green.400"
+                        }
+                      >
+                        ({overallAvgDiff("Team 1", index)})
+                      </Box>
+                    ) : null}
+                  </HStack>
                 </Td>
               ))}
             </Tr>
             <Tr>
               <Td>Team 2</Td>
               {teamTwoAvgs.map((avg, index) => (
-                <Td
-                  fontWeight="bold"
-                  textColor={
-                    overallAvgDiff("Team 2", index) < 0
-                      ? "red.400"
-                      : "green.400"
-                  }
-                >
-                  {avg} ({overallAvgDiff("Team 2", index)})
+                <Td>
+                  <HStack>
+                    <Box>{avg}</Box>
+                    {teamTwo.length > 0 ? (
+                      <Box
+                        textColor={
+                          overallAvgDiff("Team 2", index) < 0
+                            ? "red.400"
+                            : "green.400"
+                        }
+                      >
+                        ({overallAvgDiff("Team 2", index)})
+                      </Box>
+                    ) : null}
+                  </HStack>
                 </Td>
               ))}
             </Tr>
