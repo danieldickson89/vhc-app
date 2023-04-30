@@ -5,7 +5,6 @@ import { useState } from "react";
 import {
   Box,
   Button,
-  Container,
   HStack,
   SimpleGrid,
   Text,
@@ -16,8 +15,16 @@ import {
   Tbody,
   Tr,
   Td,
-  TableContainer,
+  Popover,
+  PopoverTrigger,
+  PopoverContent,
+  PopoverHeader,
+  PopoverBody,
+  PopoverArrow,
+  PopoverCloseButton,
 } from "@chakra-ui/react";
+import PlayerPopoverStats from "@/components/setTeams/playerPopoverStats";
+import PlayerPopover from "@/components/setTeams/playerPopover";
 
 export async function getServerSideProps() {
   const apiBaseUrl = process.env.API_BASE_URL;
@@ -225,14 +232,14 @@ export default function SetTeams({
           <Tbody>
             <Tr>
               <Td>Overall</Td>
-              {overallAvgs.map((avg) => (
-                <Td>{avg}</Td>
+              {overallAvgs.map((avg, index) => (
+                <Td key={index}>{avg}</Td>
               ))}
             </Tr>
             <Tr>
               <Td>Team 1</Td>
               {teamOneAvgs.map((avg, index) => (
-                <Td>
+                <Td key={index}>
                   <HStack>
                     <Box>{avg}</Box>
                     {teamOne.length > 0 ? (
@@ -253,7 +260,7 @@ export default function SetTeams({
             <Tr>
               <Td>Team 2</Td>
               {teamTwoAvgs.map((avg, index) => (
-                <Td>
+                <Td key={index}>
                   <HStack>
                     <Box>{avg}</Box>
                     {teamTwo.length > 0 ? (
@@ -311,7 +318,7 @@ export default function SetTeams({
               >
                 Team 2
               </Button>
-              <Text>{player.name}</Text>
+              <PlayerPopover player={player}></PlayerPopover>
             </HStack>
           ))}
         </Box>
@@ -349,7 +356,7 @@ export default function SetTeams({
               >
                 Switch
               </Button>
-              <Text>{player.name}</Text>
+              <PlayerPopover player={player}></PlayerPopover>
             </HStack>
           ))}
         </Box>
@@ -388,7 +395,7 @@ export default function SetTeams({
               >
                 Switch
               </Button>
-              <Text>{player.name}</Text>
+              <PlayerPopover player={player}></PlayerPopover>
             </HStack>
           ))}
         </Box>
