@@ -128,8 +128,8 @@ export default function Roster({
       <Head>
         <title>VHC</title>
       </Head>
-
-      <div className={utilStyles.navbarSpacer}></div>
+      <Toolbar></Toolbar>
+      <div className={utilStyles.rosterSpacer}></div>
       <Button w="10em" colorScheme="gray">
         <Link href="/players/newPlayer">+ Add Player</Link>
       </Button>

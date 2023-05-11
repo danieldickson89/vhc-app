@@ -4,16 +4,19 @@
   align-items: center;
 }
 
-.navbarSpacer {
+.rosterSpacer {
   margin-top: 3rem;
+  padding-top: 3rem;
 }
 
 .homePageSpacer {
   margin-top: 3rem;
+  padding-top: 3rem;
 }
 
 .setTeamsSpacer {
-  margin-top: 5rem;
+  margin-top: 3rem;
+  padding-top: 3rem;
 }
 
 .tableHeader {

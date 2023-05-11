@@ -1,5 +1,3 @@
-import utilStyles from "../../styles/utils.module.css";
-import Toolbar from "../../components/toolbar/toolbar";
 import Link from "next/link";
 import { useState } from "react";
 import { useRouter } from "next/router";
@@ -15,7 +13,6 @@ import {
   SimpleGrid,
   Container,
   VStack,
-  Box,
   useToast,
 } from "@chakra-ui/react";
 

@@ -208,7 +208,9 @@ export default function SetTeams({
       <Head>
         <title>VHC</title>
       </Head>
-      <HStack mt="4em">
+      <Toolbar></Toolbar>
+      <div className={utilStyles.setTeamsSpacer}></div>
+      <HStack mt="6em">
         <Button w="8em" onClick={() => resetTeams()}>
           Reset
         </Button>
